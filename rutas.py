@@ -91,6 +91,4 @@ def create_new():
             model.add_pasta(user, key, code)
             return redirect(url_for("get_pasta", user=user, key=key))
 
-@app.route("/c/<user>/<key>/<lexer>/")
-def get_pasta_with_sauce(user, key, lexer):
     
