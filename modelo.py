@@ -69,7 +69,7 @@ def is_used_key(user, key):
     - `key`: key to be tested
     """
 
-    return (get_pasta(user, key) is None)
+    return (get_pasta(user, key) is not None)
 
 
 def _gen_random():
