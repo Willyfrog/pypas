@@ -3,7 +3,11 @@ from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
 from common import db, PPP
-import string
+from string import digits
+try:
+    from string import ascii_letters
+except ImportError:
+    from string import letters as ascii_letters
 
 pastas = db['pastas']
 
@@ -76,7 +80,7 @@ def _gen_random():
     """
     Generate a random key
     """
-    return "".join(random.sample(string.letters + string.digits, 8))
+    return "".join(random.sample(ascii_letters + digits, 8))
 
 
 def gen_key(user, gen_fun=_gen_random):
