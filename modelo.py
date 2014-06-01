@@ -2,14 +2,17 @@ import random
 from pygments import highlight
 from pygments.lexers import get_lexer_by_name
 from pygments.formatters import HtmlFormatter
-from common import db, PPP
+from common import DB_STRING, PPP
 from string import digits
+import dataset
+
+
 try:
     from string import ascii_letters
 except ImportError:
     from string import letters as ascii_letters
 
-pastas = db['pastas']
+pastas = dataset.connect(DB_STRING)['pastas']
 
 
 def add_pasta(user, key, code):
@@ -53,7 +56,7 @@ def get_some_pasta(num_pastas=PPP, start_from=0):
     - `num_pastas`:
     - `start_from`:
     """
-    return pastas.find(_offset=start_from, _limit=start_from+PPP)
+    return pastas.find(_offset=start_from, _limit=start_from+num_pastas)
 
 
 def get_user_pasta(user):
@@ -106,7 +109,7 @@ def pasta_with_sauce(pasta, lexer):
     return {
         "user": pasta.get("user", None),
         "key": pasta.get("key", None),
-        "code": highlight(pasta["code"], lex, HtmlFormatter(linenos=True)),
+        "code": highlight(pasta["code"], lex, HtmlFormatter(linenos=(lexer!="raw"))),
     }
 
 
