@@ -40,4 +40,5 @@ Python one. An I must say it is pretty easy!
     python pypaste.py
 
 # Notice
-    runing flask as is is not recommended for 
+
+    runing flask as is is not recommended for production, but pypas as is is not recommended to be exposed to the public.
